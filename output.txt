@@ -1,0 +1,40 @@
+Song IDs: 105 210 315 420 525 630 735 840
+
+=== Table size m = 10, h(k) = k mod 10 ===
+Insert 105 -> h=5 (no collision)
+  [0:--] [1:--] [2:--] [3:--] [4:--] [5:105] [6:--] [7:--] [8:--] [9:--] 
+Insert 210 -> h=0 (no collision)
+  [0:210] [1:--] [2:--] [3:--] [4:--] [5:105] [6:--] [7:--] [8:--] [9:--] 
+Insert 315 -> h=5 ** COLLISION **
+  (placed 1 slots later)
+  [0:210] [1:--] [2:--] [3:--] [4:--] [5:105] [6:315] [7:--] [8:--] [9:--] 
+Insert 420 -> h=0 ** COLLISION **
+  (placed 1 slots later)
+  [0:210] [1:420] [2:--] [3:--] [4:--] [5:105] [6:315] [7:--] [8:--] [9:--] 
+Insert 525 -> h=5 ** COLLISION **
+  (placed 2 slots later)
+  [0:210] [1:420] [2:--] [3:--] [4:--] [5:105] [6:315] [7:525] [8:--] [9:--] 
+Insert 630 -> h=0 ** COLLISION **
+  (placed 2 slots later)
+  [0:210] [1:420] [2:630] [3:--] [4:--] [5:105] [6:315] [7:525] [8:--] [9:--] 
+Insert 735 -> h=5 ** COLLISION **
+  (placed 3 slots later)
+  [0:210] [1:420] [2:630] [3:--] [4:--] [5:105] [6:315] [7:525] [8:735] [9:--] 
+Insert 840 -> h=0 ** COLLISION **
+  (placed 3 slots later)
+  [0:210] [1:420] [2:630] [3:840] [4:--] [5:105] [6:315] [7:525] [8:735] [9:--] 
+Final table: [0:210] [1:420] [2:630] [3:840] [4:--] [5:105] [6:315] [7:525] [8:735] [9:--] 
+Extra probes caused by collisions: 12 | Load factor = 8/10 = 0.80
+
+--- Search comparison (m = 10) ---
+Key    | Hash probes  | Linear comps
+105    | 1   (found    ) | 1   (found)
+525    | 3   (found    ) | 5   (found)
+840    | 4   (found    ) | 8   (found)
+999    | 1   (not found) | 8   (not found)
+Average: hashing = 2.25, linear = 5.50
+
+=== Table size m = 11, h(k) = k mod 11 ===
+Final table: [0:--] [1:210] [2:420] [3:630] [4:840] [5:--] [6:105] [7:315] [8:525] [9:735] [10:--] 
+Extra probes caused by collisions: 0 | Load factor = 8/11 = 0.73
+Average probes with m = 11: 1.25
